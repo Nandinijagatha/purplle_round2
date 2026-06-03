@@ -12,7 +12,7 @@ from rich.table import Table
 from rich.text import Text
 from rich.console import Console
 
-API_URL = "http://localhost:8000"
+API_URL = "https://purplle-round2.onrender.com"
 STORE_ID = "ST1008"
 EVENTS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "events.jsonl")
 
