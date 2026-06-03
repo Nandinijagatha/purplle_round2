@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - DATABASE_URL=sqlite:///./data/store_intelligence.db
+    restart: always
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    depends_on:
+      - api
+    volumes:
+      - ./data:/app/data
+    environment:
+      - API_URL=http://api:8000
+    stdin_open: true # keeps stdin open for interactive terminal
+    tty: true        # allocates a pseudo-TTY for rich layout rendering
+    restart: on-failure
